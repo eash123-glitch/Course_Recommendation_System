@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Recommender</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #164863; /* Dark blue background color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #DDF2FD; /* Light blue text color */
+        }
+
+        header {
+            position: fixed; /* Fix the header at the top */
+            width: 100%; /* Take up the full width of the viewport */
+            background-color: #E0F4FF; /* Dark blue background color */
+            padding: 10px; /* Add some padding for better visibility */
+            text-align: center; /* Center the text within the header */
+            z-index: 1000; /* Set a high z-index to ensure it's above other elements */
+            top:0;
+        }
+
+        h1 {
+            color: #000000; /* White text color */
+            font-size: 36px;
+            margin-top:0px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #FFFFFF; /* White text color */
+            font-size: 24px;
+            margin-top: 150px; /* Adjusted margin to give space below the fixed header */
+            margin-bottom: 10px;
+        }
+
+        /* Style for the search bar */
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            color: #164863; /* Dark blue text color */
+        }
+
+        /* Style for the search button */
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #9BBEC8; /* Light teal color */
+            color: #164863; /* Dark blue text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #427D9D; /* Dark teal color on hover */
+        }
+
+        /* Center the form */
+        form {
+            text-align: center;
+        }
+
+        /* Style for the search results div */
+        #searchResults {
+            color: #333; /* Dark gray text color */
+            margin-top: 20px; /* Add margin to separate from the form */
+        }
+        p {
+            font-size: 20px; /* Adjusted font size */
+            max-width: 800px; /* Set a maximum width */
+            margin: 20px auto; /* Center the paragraph with top and bottom margin */
+        }
+        
+        .website-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top:auto;
+            margin-bottom: 20px;
+        }
+
+        .website-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #9BBEC8;
+            color: #164863;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            margin-right:15px;
+        }
+
+        .website-button:hover {
+            background-color: #DDF2FD;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Course Recommender</h1>
+    </header>
+
+    <h2>Search for recommendations</h2>
+    
+    <form id="searchForm">
+        <input type="text" name="search" id="searchInput" required placeholder="Enter course name">
+        <input type="submit" value="Search">
+    </form>
+    
+    <div id="searchResults">
+    </div>
+
+    <p style="font-size:30px;">Choose courses from over a dataframe of 10k courses from top e-learning websites</p>
+
+    <div class="website-buttons">
+        <a class="website-button" href="https://nptel.ac.in/courses" target="_blank">NPTEL</a>
+        <a class="website-button" href="https://ocw.mit.edu/search/?s=department_course_numbers.sort_coursenum" target="_blank">MIT OpenCourseWare</a>
+        <a class="website-button" href="https://www.udemy.com/" target="_blank">Udemy</a>
+        <a class="website-button" href="https://www.coursera.org/courses/" target="_blank">Coursera</a>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Intercept the form submission
+            $("#searchForm").submit(function(e) {
+                e.preventDefault();  // Prevent the default form submission
+
+                // Get the search term
+                var searchTerm = $("#searchInput").val();
+
+                // Make an AJAX request
+                $.ajax({
+                    type: "POST",
+                    url: "/search",
+                    data: { search: searchTerm },
+                    success: function(data) {
+                        // Update the content of the searchResults div
+                        $("#searchResults").html(data);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
