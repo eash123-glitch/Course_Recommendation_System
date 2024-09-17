@@ -49,8 +49,6 @@ The overall process of building the Course Recommendation System follows this wo
 3. **Modeling**: Using `CountVectorizer` for feature extraction and cosine similarity for calculating similarities between courses.
 4. **Deployment**: A Flask-based web application that allows users to input course names and receive recommendations.
 
-![Workflow Diagram](assets/workflow_diagram.png)
-
 ## Data Collection
 Data was collected using web scraping techniques from platforms such as NPTEL, MIT OpenCourseWare, Coursera, and Udemy. Selenium was primarily used due to the dynamic nature of these websites. The scraped data included course names, descriptions, instructors, and other relevant attributes.
 
