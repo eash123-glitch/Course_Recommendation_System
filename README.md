@@ -4,7 +4,8 @@
 
 # Course Recommendation System
 
-This project implements a content-based and collaborative filtering course recommendation system, designed to assist students in finding courses that match their interests. The system uses natural language processing (NLP) and machine learning techniques to analyze course descriptions and suggest relevant courses from various e-learning platforms.
+This project implements a content-based and collaborative filtering course recommendation system, designed to assist students in finding courses that match their interests. The system uses natural language processing (NLP) and machine learning techniques to analyze course descriptions and suggest relevant courses from various e-learning platforms.The dataset scraped can be found [here](https://drive.google.com/drive/folders/YOUR_FOLDER_ID)
+
 
 ## Table of Contents
 - [Introduction](#introduction)
